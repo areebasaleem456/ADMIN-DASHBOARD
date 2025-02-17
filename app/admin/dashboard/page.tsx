@@ -1,12 +1,11 @@
 "use client";
-import ProtectedRoute from "@/app/components/protected/page";
-import { Button } from "@/components/ui/button";
 import { client } from "@/sanity/lib/client";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import React from "react";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
+import ProtectedRoute from '../../components/ProtectedRoute';
 
 interface Order {
   _id: string;
@@ -114,13 +113,13 @@ export default function AdminDashboard() {
           </h2>
           <div className="flex gap-6 flex-wrap justify-center md:justify-end">
             {["All", "pending", "dispatch", "success"].map((status) => (
-              <Button
+              <button
                 key={status}
                 className={`px-4 py-2 rounded-lg transition-all ${filter === status ? "bg-white text-black font-bold" : " hover:bg-white text-black"}`}
                 onClick={() => setFilter(status)}
               >
                 {status.charAt(0).toUpperCase() + status.slice(1)}
-              </Button>
+              </button>
             ))}
           </div>
         </nav>
@@ -187,15 +186,15 @@ export default function AdminDashboard() {
                         </select>
                       </td>
                       <td className="px-6 py-4 pl-28 hidden md:table-cell">
-                        <Button
-                          onClick={(e) => {
+                        <button
+                          onClick={(e: { stopPropagation: () => void; }) => {
                             e.stopPropagation();
                             handleDelete(order._id);
                           }}
                           className="bg-orange-700 text-white font-bold py-2 px-4 rounded"
                         >
                           Delete
-                        </Button>
+                        </button>
                       </td>
                     </tr>
 
@@ -222,15 +221,15 @@ export default function AdminDashboard() {
                         <strong>Status:</strong> {order.status }
                       </td>
                       <td className="pl-10">
-                        <Button
-                          onClick={(e) => {
+                        <button
+                          onClick={(e: { stopPropagation: () => void; }) => {
                             e.stopPropagation();
                             handleDelete(order._id);
                           }}
                           className="bg-orange-700 text-white font-bold py-2 px-4 rounded"
                         >
                           Delete
-                        </Button>
+                        </button>
                       </td>
                     </tr>
 
